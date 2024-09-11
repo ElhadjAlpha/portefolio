@@ -128,8 +128,8 @@ USE_TZ = True
 
 # FICHIER MEDIAS
 
-MEDIA_ROOT = 'Produits'
-MEDIA_URL = 'produit/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = '/media/'
 
 # Messagerie
 
@@ -144,7 +144,8 @@ EMAIL_USE_TLS = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 LOGIN_REDIRECT_URL = 'posts:index'
 
 # Default primary key field type
