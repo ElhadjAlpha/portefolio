@@ -1,0 +1,21 @@
+{% extends 'posts/layouts/base.html' %}
+{%block title%}Update comment{%endblock%}
+{%block body %}
+{%load static%}
+    <h3 class="text-center">Update comment</h3>
+{% for message in messages%}
+<h2 class="text-center">{{message}} </h2>
+{%endfor%}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 mx-auto">
+                <form action="" method="post" >
+                    {%csrf_token%}
+                            {{form}}
+                    <input type="submit" class="btn btn-primary mt-3" value="Save">
+                </form>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+{%endblock%}

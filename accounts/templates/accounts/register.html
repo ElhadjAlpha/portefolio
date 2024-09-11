@@ -1,0 +1,26 @@
+{% extends 'posts/layouts/base.html'%}
+{%block title%}Register {%endblock%}
+{%block body%}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <form action="" method="post">
+                    {%csrf_token%}
+                    {%for field in form%}
+                        <div class="form-group">
+                            <strong style="color:red">{{ field.errors }}</strong>
+                            <strong>{{field.label_tag}}</strong> {% if field.field.required %} <span class="required">*</span>{%endif%}
+                            {{field}}
+                            {%if field.help_text%}
+                                {{help_text}}
+                            {%endif%}
+                        </div>
+                    {%endfor%}
+                    <input type="submit" class="btn btn-primary mt-3" value="Save">
+                    <a class="btn btn-danger mt-3" href="{% url 'accounts:login' %}">Cancel</a>
+                </form>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+{%endblock%}

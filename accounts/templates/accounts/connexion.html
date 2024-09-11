@@ -1,0 +1,25 @@
+{% extends 'posts/layouts/base.html'%}
+{%block title%}Login {%endblock%}
+{%block body%}
+<h2 class="text-center">Sing in</h2>
+{% for message in messages%}
+<h2 class="text-center text-success">{{message}}</h2>
+{%endfor%}
+{% if form.errors %}
+<p class="text-center text-danger">Your username and password didn't match. Please try again.</p>
+{% endif %}
+<form action="" method="post">{%csrf_token%}
+      {%for field in form%}
+            <strong style="color:red">{{ field.errors }}</strong>
+            <div class="form-group">
+                <strong>{{field.label_tag}}</strong> {% if field.field.required %} <span class="required">*</span>{%endif%}
+                {{field}}
+                {%if field.help_text%}
+                    {{help_text}}
+                {%endif%}
+            </div>
+      {%endfor%}
+    <input type="submit" value="Login" class="btn btn-success mt-3">
+    <a href="{% url 'accounts:register' %}" class="btn btn-primary mt-3">créee votre compte</a>
+</form>
+{%endblock%}

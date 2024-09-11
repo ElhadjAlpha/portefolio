@@ -1,0 +1,47 @@
+{% extends 'posts/layouts/base.html'%}
+{%block title%}Search results {%endblock%}
+{%block body%}
+{%load static%}
+<h3 class="text-center"> {{message}} :</h3>
+<div class="row row-cols-md-3 row-cols-sm-2">
+        {% for posts in post%}
+    <div class="col">
+        {% if posts.is_published %}
+        <div class="custom-card card mb-3 shadow" style="width: 20rem">
+            {% if posts.image %}
+                <img src="{{posts.image.url}}" class="card-img-top" alt="..." style="height:200px">
+            {%else%}
+                <img src="{% static 'posts/default.png' %}" class="card-img-top" alt="..." style="height:200px; ">
+            {%endif%}
+            <div class="card-body">
+                <h3 class="card-title">{{posts.title}}</h3>
+                <p class="card-text">{{posts.content|truncatewords:20}} </p>
+                <a href="{% url 'posts:create_comment' posts.id%}" class="btn btn-primary">More</a>
+                {%if posts.user == request.user%}
+                    <a href="{% url 'posts:update_post' posts.id%}" class="btn btn-success">Update</a>
+                    <a href="{% url 'posts:delete_post' posts.id%}" class="btn btn-danger">Delete</a>
+                {%endif%}
+
+            </div>
+            <div class="card-footer">
+                {%if posts.user == request.user%}
+                    Published by : <strong>You</strong><br/>
+                    Since : <strong>{{posts.date_published |timesince}}</strong>
+                {%else%}
+                    Published by : <strong>{{posts.user.username}}</strong> <br/>
+                    Since : <strong>{{posts.date_published |timesince}}</strong>
+                {%endif%}
+            </div>
+        </div>
+        {%else%}
+        <div class="custom-card card mb-3 shadow" style="width: 20rem">
+            <div class="card-body">
+                <h3 class="card-title">Please wait for Admin to verify this post</h3>
+            </div>
+        </div>
+        {%endif%}
+    </div>
+    {%endfor%}
+
+</div>
+{%endblock%}

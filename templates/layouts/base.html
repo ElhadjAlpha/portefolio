@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{%block title%}{%endblock%} | My Blog</title>
+    {%block stylesheet%}{%endblock%}
+    {%block bootstrap1%}{%endblock%}
+    {%block bootstrap2%}{%endblock%}
+</head>
+<body class="container">
+    <header>{%include 'layouts/partials/header.html'%}</header>
+    {%block body%}{%endblock%}
+    <footer class="footer p-3 mt-5">{%include 'layouts/partials/footer.html'%}</footer>
+    {%block js%}{%endblock%}
+</body>
+</html>
